@@ -216,7 +216,14 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
         <dl class="details">
           <div>
             <dt class="field-label">Address</dt>
-            <dd>{site.address.map((line, i) => <>{line}{i < site.address.length - 1 && <br />}</>)}</dd>
+            <dd>
+              {site.address.map((line, i) => <>{line}{i < site.address.length - 1 && <br />}</>)}
+              <br />
+              <a class="directions-link" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+                Get directions <Icon name="arrow-up-right" size={14} />
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+            </dd>
           </div>
           <div>
             <dt class="field-label">Office hours</dt>
@@ -228,14 +235,10 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
       <div class="map-card">
         <iframe
           title="Map showing Heron Accountancy Solutions at City East Business Centre, Belfast"
-          src="https://www.google.com/maps?q=City+East+Business+Centre,+68-72+Newtownards+Road,+Belfast+BT4+1GW&output=embed"
+          src="https://www.google.com/maps?q=68-72+Newtownards+Road,+Belfast+BT4+1GW&z=16&output=embed"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen></iframe>
-        <a class="map-card__cta" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
-          Open in Google Maps <Icon name="arrow-up-right" size={16} />
-          <span class="sr-only">(opens in a new tab)</span>
-        </a>
       </div>
     </div>
   </section>

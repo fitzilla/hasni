@@ -1027,21 +1027,12 @@ h3 {
   border: 0;
 }
 
-.map-card__cta {
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
+.directions-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: var(--white);
-  color: var(--ink);
-  font-size: 0.9375rem;
+  gap: 6px;
+  margin-top: 8px;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(21, 23, 28, 0.15);
 }
 
 /* --------------------------------------------------------------------------
