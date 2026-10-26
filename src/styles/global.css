@@ -340,7 +340,7 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.78);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   backdrop-filter: saturate(180%) blur(12px);
   border-bottom: 1px solid var(--line);
@@ -1487,4 +1487,94 @@ h3 {
 
 .site-footer nav a:hover {
   color: var(--red-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Photo backdrops (soft monotone Belfast photos behind headers)
+   -------------------------------------------------------------------------- */
+
+.hero-band,
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Home: let the photo run up behind the translucent sticky header */
+.hero-band {
+  margin-top: calc(-1 * var(--header-h));
+  padding-top: var(--header-h);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.backdrop__img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.backdrop__img.is-ready {
+  opacity: 0.9;
+}
+
+.backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* Mobile: photo sits at the top and dissolves into the page */
+.backdrop--hero .backdrop__img,
+.backdrop--page .backdrop__img {
+  height: 70%;
+}
+
+.backdrop--hero::after {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.82) 35%, #fff 68%);
+}
+
+.backdrop--page::after {
+  background: linear-gradient(180deg, rgba(250, 250, 251, 0.55) 0%, rgba(250, 250, 251, 0.88) 45%, var(--soft) 80%);
+}
+
+.backdrop--teal::after {
+  background: linear-gradient(180deg, rgba(228, 239, 238, 0.5) 0%, rgba(228, 239, 238, 0.86) 45%, var(--teal-tint) 80%);
+}
+
+@media (min-width: 1000px) {
+  .backdrop--hero .backdrop__img {
+    width: 78%;
+    height: 100%;
+  }
+  .backdrop--hero::after {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, #fff 100%),
+      linear-gradient(90deg, #fff 22%, rgba(255, 255, 255, 0.88) 42%, rgba(255, 255, 255, 0.45) 70%, rgba(255, 255, 255, 0.25) 100%);
+  }
+  .backdrop--page .backdrop__img {
+    width: 60%;
+    height: 100%;
+  }
+  .backdrop--page::after {
+    background: linear-gradient(90deg, var(--soft) 40%, rgba(250, 250, 251, 0.7) 62%, rgba(250, 250, 251, 0.15) 100%);
+  }
+  .backdrop--teal::after {
+    background: linear-gradient(90deg, var(--teal-tint) 40%, rgba(228, 239, 238, 0.72) 62%, rgba(228, 239, 238, 0.15) 100%);
+  }
+}
+
+.hero-band .contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 2px rgba(21, 23, 28, 0.04), 0 16px 40px rgba(21, 23, 28, 0.1);
 }

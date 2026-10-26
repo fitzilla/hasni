@@ -2,6 +2,7 @@
 import Base from './Base.astro';
 import CallButton from '../components/CallButton.astro';
 import Icon from '../components/Icon.astro';
+import PhotoBackdrop from '../components/PhotoBackdrop.astro';
 import { site, relatedPages } from '../data/site.js';
 import { url } from '../lib/url.js';
 
@@ -39,6 +40,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}
 
 <Base title={title} description={description}>
   <section class:list={['page-hero', { 'page-hero--teal': tone === 'teal' }]}>
+    <PhotoBackdrop variant="page" tone={tone === 'teal' ? 'teal' : 'mono'} />
     <div class="container page-hero__inner">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>

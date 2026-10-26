@@ -1,0 +1,55 @@
+---
+// Soft monotone photo behind a page header. A different Belfast photo is
+// picked on each page view (never the same one twice in a row).
+import { url } from '../lib/url.js';
+
+interface Props {
+  variant?: 'hero' | 'page';
+  tone?: 'mono' | 'teal';
+}
+
+const { variant = 'page', tone = 'mono' } = Astro.props;
+
+const photos = [
+  { key: 'titanic', pos: '40% 60%' },
+  { key: 'clock', pos: '61% 45%' },
+  { key: 'marina', pos: '50% 55%' },
+].map((p) => ({
+  pos: p.pos,
+  src: url(`images/backdrops/${p.key}-${tone}-1800.webp`),
+  srcset: `${url(`images/backdrops/${p.key}-${tone}-900.webp`)} 900w, ${url(`images/backdrops/${p.key}-${tone}-1800.webp`)} 1800w`,
+}));
+
+const sizes = variant === 'hero' ? '(min-width: 1000px) 78vw, 100vw' : '(min-width: 1000px) 60vw, 100vw';
+const fallback = photos[0];
+---
+
+<div class:list={['backdrop', `backdrop--${variant}`, `backdrop--${tone}`]} aria-hidden="true">
+  <img class="backdrop__img" alt="" sizes={sizes} decoding="async" data-backdrop />
+  <noscript>
+    <img
+      class="backdrop__img is-ready"
+      alt=""
+      src={fallback.src}
+      srcset={fallback.srcset}
+      sizes={sizes}
+      style={`object-position: ${fallback.pos}`}
+    />
+  </noscript>
+  <script is:inline define:vars={{ photos }}>
+    (function () {
+      var img = document.currentScript.parentElement.querySelector('[data-backdrop]');
+      if (!img) return;
+      var last = -1;
+      try { last = parseInt(sessionStorage.getItem('heron-bg'), 10); } catch (e) {}
+      var choices = photos.map(function (_, i) { return i; }).filter(function (i) { return i !== last; });
+      var pick = choices[Math.floor(Math.random() * choices.length)];
+      try { sessionStorage.setItem('heron-bg', String(pick)); } catch (e) {}
+      var p = photos[pick];
+      img.style.objectPosition = p.pos;
+      img.addEventListener('load', function () { img.classList.add('is-ready'); }, { once: true });
+      img.srcset = p.srcset;
+      img.src = p.src;
+    })();
+  </script>
+</div>

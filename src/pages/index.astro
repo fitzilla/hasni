@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import CallButton from '../components/CallButton.astro';
 import Icon from '../components/Icon.astro';
+import PhotoBackdrop from '../components/PhotoBackdrop.astro';
 import { site, services } from '../data/site.js';
 import { url } from '../lib/url.js';
 
@@ -35,7 +36,9 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
 
 <Base>
   <!-- Hero -->
-  <section class="container hero" aria-labelledby="hero-heading">
+  <section class="hero-band" aria-labelledby="hero-heading">
+  <PhotoBackdrop variant="hero" />
+  <div class="container hero">
     <div>
       <p class="eyebrow">Chartered certified accountants · Belfast</p>
       <h1 id="hero-heading" class="h1 hero__title">Accounts sorted, so you can run your business.</h1>
@@ -71,6 +74,7 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
         </div>
       </div>
     </aside>
+  </div>
   </section>
 
   <!-- Facts -->

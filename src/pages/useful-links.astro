@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import CallButton from '../components/CallButton.astro';
 import Icon from '../components/Icon.astro';
+import PhotoBackdrop from '../components/PhotoBackdrop.astro';
 import { url } from '../lib/url.js';
 
 const groups = [
@@ -40,6 +41,7 @@ const groups = [
 
 <Base title="Useful links" description="Resources for small businesses and start-ups in Northern Ireland: HMRC, Companies House, FSB, start-up advice and business news.">
   <section class="page-hero">
+    <PhotoBackdrop variant="page" />
     <div class="container page-hero__inner">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
