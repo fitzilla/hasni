@@ -18,16 +18,19 @@ const quotes = [
     text: 'The service Julie and Nigel provide is superb. They are a great team and always keen to help.',
     name: 'Ray Devine',
     org: 'Octagon Design (NI) Ltd',
+    photo: 'images/team/ray-devine.webp',
   },
   {
     text: 'Nigel has a unique ability in translating tax-speak into plain English.',
     name: 'Al Chada',
     org: 'Director, Alpha Answering Ltd',
+    initials: 'AC',
   },
   {
     text: 'I have complete confidence in the team at Heron Accountancy Solutions. Nigel has been fantastic to work with.',
     name: 'Sulby Media Ltd',
     org: 'Client',
+    initials: 'SM',
   },
 ];
 
@@ -193,7 +196,14 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
         {quotes.map((q) => (
           <figure class="quote">
             <blockquote>“{q.text}”</blockquote>
-            <figcaption><strong>{q.name}</strong>{q.org}</figcaption>
+            <figcaption>
+              {q.photo ? (
+                <img class="avatar" src={url(q.photo)} alt="" width="48" height="48" loading="lazy" decoding="async" />
+              ) : (
+                <span class="avatar avatar--initials" aria-hidden="true">{q.initials}</span>
+              )}
+              <span><strong>{q.name}</strong>{q.org}</span>
+            </figcaption>
           </figure>
         ))}
       </div>
