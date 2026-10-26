@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site.js';
+
+interface Props {
+  variant?: 'primary' | 'outline' | 'secondary';
+  label?: string;
+  block?: boolean;
+}
+
+const { variant = 'primary', label = `Call ${site.phone}`, block = false } = Astro.props;
+---
+
+<a href={site.phoneHref} class:list={['btn', `btn--${variant}`, { 'btn--block': block }]}>
+  <Icon name="phone" size={variant === 'outline' ? 16 : 18} />
+  <span>{label}</span>
+</a>

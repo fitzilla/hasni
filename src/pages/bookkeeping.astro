@@ -1,0 +1,39 @@
+---
+import ServicePage from '../layouts/ServicePage.astro';
+import { url } from '../lib/url.js';
+---
+
+<ServicePage
+  slug="bookkeeping"
+  title="Bookkeeping"
+  eyebrow="Service 06"
+  lead="Tailored bookkeeping that helps you keep on top of your accounts and eliminate fines for out-of-date information."
+  description="Cost-effective bookkeeping for Belfast businesses — manual or software-based, on-site if you prefer."
+  asideTitle="Get your books in order"
+  emailSubject="Bookkeeping"
+>
+  <section class="prose">
+    <p>
+      We can work on manual accounts, or with your existing bookkeeping software, to keep you up to date with your
+      sales invoicing and business expenditure.
+    </p>
+    <p>
+      As a very cost-effective alternative to in-house bookkeeping, our package can be adjusted to meet your needs —
+      and we can work with you on-site for your convenience.
+    </p>
+  </section>
+
+  <section class="tiles" aria-label="Highlights">
+    <div class="tile"><strong>Manual or software</strong><p>We work the way your records already are.</p></div>
+    <div class="tile"><strong>Cost-effective</strong><p>An alternative to in-house bookkeeping.</p></div>
+    <div class="tile"><strong>On-site</strong><p>We can work with you at your premises.</p></div>
+  </section>
+
+  <section class="prose" aria-labelledby="migrate-heading">
+    <h2 id="migrate-heading" class="h3">Moving to new software?</h2>
+    <p>
+      Our software specialists can advise on new programs and oversee your bookkeeping migration. See also
+      <a href={url('accounting-software-training/')}>accounting software training</a>.
+    </p>
+  </section>
+</ServicePage>

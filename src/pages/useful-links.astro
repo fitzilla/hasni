@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import CallButton from '../components/CallButton.astro';
+import Icon from '../components/Icon.astro';
+import { url } from '../lib/url.js';
+
+const groups = [
+  {
+    title: 'Business start-ups',
+    links: [
+      { name: 'Startups.co.uk', href: 'https://startups.co.uk', desc: 'Aimed at SMEs — news with practical, no-nonsense advice.' },
+      { name: "The King's Trust", href: 'https://www.kingstrust.org.uk', desc: 'Helps young people start and develop their own businesses. Free advice for 16 to 30 year olds.' },
+      { name: 'NewBusiness.co.uk', href: 'https://www.newbusiness.co.uk', desc: 'A comprehensive site dedicated to new businesses.' },
+    ],
+  },
+  {
+    title: 'Government',
+    links: [
+      { name: 'GOV.UK', href: 'https://www.gov.uk', desc: 'Everything about the UK government — and up-to-date news and accountancy advice.' },
+      { name: 'HMRC', href: 'https://www.gov.uk/government/organisations/hm-revenue-customs', desc: 'Advice for small businesses and the self-employed — surprisingly helpful.' },
+      { name: 'Companies House', href: 'https://www.gov.uk/government/organisations/companies-house', desc: 'Information for limited companies, including name searches and company details.' },
+    ],
+  },
+  {
+    title: 'Business information',
+    links: [
+      { name: 'Federation of Small Businesses', href: 'https://www.fsb.org.uk', desc: 'The leading voice for British small business.' },
+      { name: 'AccountingWEB', href: 'https://www.accountingweb.co.uk', desc: 'Accounting and taxation information for the accountancy community.' },
+    ],
+  },
+  {
+    title: 'Business news',
+    links: [
+      { name: 'Financial Times', href: 'https://www.ft.com', desc: 'Up-to-the-minute news, information and analysis.' },
+      { name: 'BBC Business', href: 'https://www.bbc.co.uk/news/business', desc: 'The latest financial news.' },
+    ],
+  },
+];
+---
+
+<Base title="Useful links" description="Resources for small businesses and start-ups in Northern Ireland: HMRC, Companies House, FSB, start-up advice and business news.">
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={url('')}>Home</a></li>
+          <li><span aria-current="page">Useful links</span></li>
+        </ol>
+      </nav>
+      <p class="eyebrow">Resources</p>
+      <h1 class="h1">Useful links</h1>
+      <p class="lead">
+        We believe in complete transparency. Here are resources to help with your filings and your understanding of good
+        practice and legal requirements — and to verify the advice you get from us.
+      </p>
+    </div>
+  </section>
+
+  <div class="container link-groups">
+    {groups.map((g) => (
+      <section aria-label={g.title}>
+        <h2>{g.title}</h2>
+        <ul class="link-list">
+          {g.links.map((l) => (
+            <li>
+              <a href={l.href} rel="noopener">
+                <span class="link-list__text">
+                  <span class="link-list__name">{l.name}</span>
+                  <span class="link-list__desc">{l.desc}</span>
+                </span>
+                <Icon name="arrow-up-right" size={18} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+
+  <section class="container" style="padding-bottom: var(--section-y)">
+    <div class="cta-strip">
+      <p>Still have questions? Your first consultation is free.</p>
+      <CallButton />
+    </div>
+  </section>
+</Base>

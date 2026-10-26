@@ -1,0 +1,34 @@
+---
+import ServicePage from '../layouts/ServicePage.astro';
+
+const stages = [
+  'Initial registration for Pay As You Earn (PAYE)',
+  'Generating payslips',
+  'Advising on HMRC requirements, including preparing and submitting Real Time Information (RTI)',
+  'Managing annual returns and producing P45s and P60s',
+  'Overseeing auto-enrolment and managing pension schemes',
+];
+---
+
+<ServicePage
+  slug="payroll"
+  title="Payroll"
+  eyebrow="Service 05"
+  lead="We understand how precious time is for SMEs. Our full range of payroll services lets you grow your business instead of worrying about payslips and annual returns."
+  description="Payroll services for Northern Ireland businesses: PAYE registration, payslips, RTI, P45s and P60s, and pension auto-enrolment."
+  asideTitle="Let us run your payroll"
+  emailSubject="Payroll"
+>
+  <section aria-labelledby="payroll-heading">
+    <h2 id="payroll-heading" class="h3">Help at every stage</h2>
+    <p class="muted" style="margin-bottom: 12px">Our experts can help at any stage of the payroll process:</p>
+    <ol class="num-list">
+      {stages.map((s, i) => (
+        <li>
+          <span class="badge" aria-hidden="true">{i + 1}</span>
+          <span>{s}</span>
+        </li>
+      ))}
+    </ol>
+  </section>
+</ServicePage>

@@ -1,0 +1,87 @@
+---
+import Base from './Base.astro';
+import CallButton from '../components/CallButton.astro';
+import Icon from '../components/Icon.astro';
+import { site, relatedPages } from '../data/site.js';
+import { url } from '../lib/url.js';
+
+interface Props {
+  slug: string;
+  title: string;
+  eyebrow: string;
+  lead: string;
+  description: string;
+  asideTitle: string;
+  asideSub?: string;
+  emailSubject: string;
+  inServices?: boolean;
+  tone?: 'soft' | 'teal';
+  relatedLabel?: string;
+}
+
+const {
+  slug,
+  title,
+  eyebrow,
+  lead,
+  description,
+  asideTitle,
+  asideSub = 'Your first consultation is free, with no commitment.',
+  emailSubject,
+  inServices = true,
+  tone = 'soft',
+  relatedLabel = 'Other services',
+} = Astro.props;
+
+const related = relatedPages.filter((p) => p.slug !== slug);
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}`;
+---
+
+<Base title={title} description={description}>
+  <section class:list={['page-hero', { 'page-hero--teal': tone === 'teal' }]}>
+    <div class="container page-hero__inner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={url('')}>Home</a></li>
+          {inServices && <li><a href={url('#services')}>Services</a></li>}
+          <li><span aria-current="page">{title}</span></li>
+        </ol>
+      </nav>
+      <p class:list={['eyebrow', { 'eyebrow--teal': tone === 'teal' }]}>{eyebrow}</p>
+      <h1 class="h1">{title}</h1>
+      <p class="lead">{lead}</p>
+      <slot name="hero" />
+    </div>
+  </section>
+
+  <div class="container page-body">
+    <div class="page-main">
+      <slot />
+    </div>
+
+    <aside class="contact-card page-aside" aria-labelledby="aside-heading">
+      <h2 id="aside-heading" class="aside-card__title">{asideTitle}</h2>
+      <p class="aside-card__sub">{asideSub}</p>
+      <div class="aside-card__actions">
+        <CallButton block />
+        <a class="btn btn--secondary btn--block" href={mailto}>
+          <Icon name="mail" size={18} />
+          <span>Email us</span>
+        </a>
+      </div>
+      <div class="aside-card__meta">
+        <span class="field-label">Office hours</span>
+        <span class="field-value" style="font-weight: 500">{site.hours.short}</span>
+        <br />
+        <a href={site.mapsUrl} rel="noopener">City East Business Centre — directions&nbsp;→</a>
+      </div>
+    </aside>
+
+    <section class="related" aria-labelledby="related-heading">
+      <h2 id="related-heading">{relatedLabel}</h2>
+      <ul class="pills">
+        {related.map((p) => <li><a href={url(`${p.slug}/`)}>{p.title}</a></li>)}
+      </ul>
+    </section>
+  </div>
+</Base>

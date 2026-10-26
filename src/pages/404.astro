@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import CallButton from '../components/CallButton.astro';
+import { url } from '../lib/url.js';
+---
+
+<Base title="Page not found">
+  <section class="container section" style="min-height: 50vh">
+    <p class="eyebrow">404</p>
+    <h1 class="h1" style="max-width: 16ch">We couldn't find that page.</h1>
+    <p class="lead" style="margin-top: 20px; max-width: 32em">
+      It may have moved when we updated our website. Head back home, or give us a call.
+    </p>
+    <div class="btn-row btn-row--stack-mobile" style="margin-top: 28px">
+      <a class="btn btn--secondary" href={url('')}>Back to home</a>
+      <CallButton />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,193 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import CallButton from '../components/CallButton.astro';
+import { site } from '../data/site.js';
+import { url } from '../lib/url.js';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Chartered certified accountants in Belfast. Tax, accounts, payroll and business advice for small and medium-sized businesses across Northern Ireland.',
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — Chartered certified accountants, Belfast`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(url('images/heron-logo.png'), Astro.site);
+
+const nav = [
+  { label: 'Services', href: url('#services') },
+  { label: 'About', href: url('#about') },
+  { label: 'Team', href: url('#team') },
+  { label: 'Contact', href: url('#contact') },
+];
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_GB" />
+
+    <link rel="icon" type="image/png" href={url('favicon.png')} />
+    <link rel="apple-touch-icon" href={url('apple-touch-icon.png')} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'AccountingService',
+      name: site.name,
+      url: new URL(url(''), Astro.site).toString(),
+      telephone: '+44 28 9094 1680',
+      email: site.email,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '301 City East Business Centre, 68–72 Newtownards Road',
+        addressLocality: 'Belfast',
+        postalCode: 'BT4 1GW',
+        addressCountry: 'GB',
+      },
+      openingHours: 'Mo-Fr 09:00-17:00',
+      sameAs: [site.social.facebook, site.social.x],
+    })} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__logo" href={url('')} aria-label={`${site.name}, home`}>
+          <img src={url('images/heron-logo.png')} alt={site.name} width="490" height="168" />
+        </a>
+
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+            <li><CallButton variant="outline" label={site.phone} /></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a class="icon-btn" href={site.phoneHref} aria-label={`Call ${site.phone}`}>
+            <Icon name="phone" size={18} />
+          </a>
+          <button
+            class="icon-btn menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Open menu"
+          >
+            <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="container">
+        <ul>
+          {nav.map((item) => (
+            <li>
+              <a href={item.href}>
+                {item.label}
+                <Icon name="arrow-right" size={20} />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="mobile-menu__cta">
+          <CallButton block />
+          <a class="btn btn--secondary btn--block" href={`mailto:${site.email}`}>
+            <Icon name="mail" size={18} />
+            <span>{site.email}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <div class="site-footer__brand">
+          <img src={url('images/heron-logo.png')} alt={site.name} width="105" height="36" loading="lazy" />
+          <span>© {new Date().getFullYear()} {site.name} · Belfast BT4 1GW</span>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href={url('#services')}>Services</a></li>
+            <li><a href={url('cloud-accounting/')}>Cloud accounting</a></li>
+            <li><a href={url('useful-links/')}>Useful links</a></li>
+            <li><a href={url('#contact')}>Contact</a></li>
+            <li><a href={site.social.facebook} rel="noopener">Facebook</a></li>
+            <li><a href={site.social.x} rel="noopener">X</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+
+      if (toggle && menu) {
+        const setOpen = (open: boolean) => {
+          toggle.setAttribute('aria-expanded', String(open));
+          toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+          menu.classList.toggle('is-open', open);
+        };
+
+        toggle.addEventListener('click', () => {
+          setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+        });
+
+        menu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => setOpen(false));
+        });
+
+        document.addEventListener('click', (event) => {
+          const target = event.target as Node;
+          if (toggle.getAttribute('aria-expanded') === 'true' && !menu.contains(target) && !toggle.contains(target)) {
+            setOpen(false);
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+            setOpen(false);
+            toggle.focus();
+          }
+        });
+
+        window.matchMedia('(min-width: 900px)').addEventListener('change', (event) => {
+          if (event.matches) setOpen(false);
+        });
+      }
+    </script>
+  </body>
+</html>

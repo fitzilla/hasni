@@ -1,0 +1,244 @@
+---
+import Base from '../layouts/Base.astro';
+import CallButton from '../components/CallButton.astro';
+import Icon from '../components/Icon.astro';
+import { site, services } from '../data/site.js';
+import { url } from '../lib/url.js';
+
+const facts = [
+  { title: 'Four decades', sub: 'of combined experience' },
+  { title: 'SMEs & start-ups', sub: 'are what we specialise in' },
+  { title: 'On-site or in Belfast', sub: 'we meet wherever suits you' },
+  { title: 'Outside office hours', sub: 'when your business needs it' },
+];
+
+const quotes = [
+  {
+    text: 'The service Julie and Nigel provide is superb. They are a great team and always keen to help.',
+    name: 'Ray Devine',
+    org: 'Octagon Design (NI) Ltd',
+  },
+  {
+    text: 'Nigel has a unique ability in translating tax-speak into plain English.',
+    name: 'Al Chada',
+    org: 'Director, Alpha Answering Ltd',
+  },
+  {
+    text: 'I have complete confidence in the team at Heron Accountancy Solutions. Nigel has been fantastic to work with.',
+    name: 'Sulby Media Ltd',
+    org: 'Client',
+  },
+];
+
+const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Free initial consultation')}`;
+---
+
+<Base>
+  <!-- Hero -->
+  <section class="container hero" aria-labelledby="hero-heading">
+    <div>
+      <p class="eyebrow">Chartered certified accountants · Belfast</p>
+      <h1 id="hero-heading" class="h1 hero__title">Accounts sorted, so you can run your business.</h1>
+      <p class="lead hero__lead">
+        Tax, accounts, payroll and business advice for small and medium-sized businesses across Northern Ireland.
+      </p>
+      <div class="btn-row btn-row--stack-mobile">
+        <a class="btn btn--primary" href={consultMail}>Book a free consultation</a>
+        <a class="btn btn--secondary" href="#services">See our services</a>
+      </div>
+    </div>
+
+    <aside class="contact-card" aria-label="Contact details">
+      <p class="contact-card__label">Get in touch</p>
+      <div class="contact-card__rows">
+        <div>
+          <span class="field-label">Phone</span>
+          <a class="field-value field-value--lg" href={site.phoneHref}>{site.phone}</a>
+        </div>
+        <div>
+          <span class="field-label">Email</span>
+          <a class="field-value" href={`mailto:${site.email}`} style="font-size: 1.125rem">{site.email}</a>
+        </div>
+        <div class="contact-card__split">
+          <div>
+            <span class="field-label">Office hours</span>
+            <span class="field-value">{site.hours.short}</span>
+          </div>
+          <div>
+            <span class="field-label">Office</span>
+            <a class="field-value" href="#contact">City East Business Centre, Belfast</a>
+          </div>
+        </div>
+        <p class="note">Your first consultation is free, with no commitment.</p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Facts -->
+  <section class="section--soft" aria-label="Why Heron">
+    <div class="container facts">
+      {facts.map((f) => (
+        <div>
+          <p class="fact__title">{f.title}</p>
+          <p class="fact__sub">{f.sub}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="container" style="padding-block: var(--section-y) 32px" aria-labelledby="services-heading">
+    <p class="eyebrow">Services</p>
+    <h2 id="services-heading" class="h2">Pick one, or let us handle the lot.</h2>
+    <ul class="svc-list">
+      {services.map((s) => (
+        <li>
+          <a class="svc-row" href={url(`${s.slug}/`)}>
+            <span class="badge badge--lg" aria-hidden="true">{s.num}</span>
+            <span class="svc-row__text">
+              <span class="svc-row__title">{s.title}</span>
+              <span class="svc-row__summary">{s.summary}</span>
+            </span>
+            <Icon name="arrow-right" size={20} class="svc-row__arrow" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Cloud band -->
+  <section class="container" style="padding-bottom: var(--section-y)" aria-label="Cloud accounting">
+    <a class="band" href={url('cloud-accounting/')}>
+      <span class="band__text">
+        <span class="band__title">Cloud accounting</span>
+        <span class="band__sub">We work with Sage, QuickBooks and Xero — or whichever cloud system you prefer.</span>
+      </span>
+      <span class="btn btn--teal">Find out more <Icon name="arrow-right" size={16} /></span>
+    </a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section section--soft" aria-labelledby="about-heading">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">About us</p>
+        <h2 id="about-heading" class="h2">A Belfast firm that treats every client as unique.</h2>
+      </div>
+      <p class="lead">
+        We support small and medium-sized businesses across Northern Ireland, from company set-up to reaching their
+        full potential. Every client gets a tailored, confidential approach — and approachable, experienced people
+        who take care of tax, PAYE and HMRC for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="section container" aria-labelledby="team-heading">
+    <p class="eyebrow">Meet the team</p>
+    <h2 id="team-heading" class="h2">The people you'll deal with.</h2>
+    <div class="team">
+      <article class="person">
+        <!-- Replace with <img class="person__photo" src={url('images/julie.jpg')} alt="Julie Hamilton" /> -->
+        <div class="person__photo" role="img" aria-label="Photo of Julie Hamilton to follow">Photo to follow</div>
+        <div class="person__body">
+          <h3 class="person__name">Julie Hamilton</h3>
+          <p class="person__role">Chartered Certified Accountant (ACCA)</p>
+          <p class="person__bio">
+            25+ years in accountancy. Specialises in property portfolios of all sizes and local business-to-customer
+            entrepreneurs.
+          </p>
+          <div class="person__links">
+            <a href={`mailto:julie@hasni.co.uk?subject=${encodeURIComponent('Website enquiry')}`}>Email Julie</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="person">
+        <!-- Replace with <img class="person__photo" src={url('images/nigel.jpg')} alt="Nigel Sempey" /> -->
+        <div class="person__photo" role="img" aria-label="Photo of Nigel Sempey to follow">Photo to follow</div>
+        <div class="person__body">
+          <h3 class="person__name">Nigel Sempey</h3>
+          <p class="person__role">Chartered Certified Accountant</p>
+          <p class="person__bio">
+            Nearly 20 years in accountancy, focused on keeping SMEs compliant. Honours graduate in accountancy, Dundee
+            University.
+          </p>
+          <div class="person__links">
+            <a href={`mailto:nigel@hasni.co.uk?subject=${encodeURIComponent('Website enquiry')}`}>Email Nigel</a>
+            <a href="https://uk.linkedin.com/in/nigel-sempey-8835861b" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section--dark" aria-label="Client testimonials">
+    <div class="container">
+      <div class="quotes-head">
+        <div class="rule" aria-hidden="true"></div>
+        <p>What our clients say</p>
+      </div>
+      <div class="quotes">
+        {quotes.map((q) => (
+          <figure class="quote">
+            <blockquote>“{q.text}”</blockquote>
+            <figcaption><strong>{q.name}</strong>{q.org}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section container" aria-labelledby="contact-heading">
+    <div class="contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-heading" class="h2">Let's talk about your accounts.</h2>
+        <p class="lead" style="margin-top: 16px">Your first consultation is free, with no commitment.</p>
+        <div class="btn-row btn-row--stack-mobile" style="margin-top: 28px">
+          <CallButton />
+          <a class="btn btn--secondary" href={consultMail}>
+            <Icon name="mail" size={18} />
+            <span>Email us</span>
+          </a>
+        </div>
+        <dl class="details">
+          <div>
+            <dt class="field-label">Address</dt>
+            <dd>{site.address.map((line, i) => <>{line}{i < site.address.length - 1 && <br />}</>)}</dd>
+          </div>
+          <div>
+            <dt class="field-label">Office hours</dt>
+            <dd>{site.hours.days}<br />{site.hours.time}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <a class="map-card" href={site.mapsUrl} rel="noopener" aria-label="Open our office location in Google Maps">
+        <img
+          src={url('images/office-map.jpg')}
+          alt=""
+          width="1200"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="map-pin" aria-hidden="true">
+          <span class="map-pin__label">Heron · City East Business Centre</span>
+          <svg width="34" height="44" viewBox="0 0 34 44">
+            <path
+              d="M17 43s14-14.6 14-25.5C31 8.4 24.7 2 17 2S3 8.4 3 17.5C3 28.4 17 43 17 43z"
+              fill="#C8102E"
+              stroke="#fff"
+              stroke-width="2.5"></path>
+            <circle cx="17" cy="17" r="5.5" fill="#fff"></circle>
+          </svg>
+        </span>
+        <span class="map-card__cta">Open in Google Maps <Icon name="arrow-up-right" size={16} /></span>
+        <span class="map-card__credit">© OpenStreetMap contributors</span>
+      </a>
+    </div>
+  </section>
+</Base>
