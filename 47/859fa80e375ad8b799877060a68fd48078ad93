@@ -1,0 +1,16 @@
+src/pages/index.astro
+  h_169f21fe93d5d3 219-226,238
+src/styles/global.css
+  h_169f21fe93d5d3 1030,1033-1034
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "47859fa80e375ad8b799877060a68fd48078ad93",
+  "prompts": {},
+  "humans": {
+    "h_169f21fe93d5d3": {
+      "author": "Aaron Fitzsimmons <afitzsimmons@stora.co>"
+    }
+  }
+}
