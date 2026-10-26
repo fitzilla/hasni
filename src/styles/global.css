@@ -999,44 +999,12 @@ h3 {
   }
 }
 
-.map-card img {
+.map-card iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s ease;
-}
-
-.map-card:hover img {
-  transform: scale(1.02);
-}
-
-.map-pin {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: translate(-50%, -100%);
-  pointer-events: none;
-}
-
-.map-pin__label {
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  background: var(--ink);
-  color: var(--white);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 6px 16px rgba(21, 23, 28, 0.25);
-}
-
-.map-pin svg {
-  margin-top: 6px;
+  border: 0;
 }
 
 .map-card__cta {
@@ -1054,17 +1022,6 @@ h3 {
   font-size: 0.9375rem;
   font-weight: 600;
   box-shadow: 0 4px 14px rgba(21, 23, 28, 0.15);
-}
-
-.map-card__credit {
-  position: absolute;
-  right: 8px;
-  bottom: 6px;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--body);
-  font-size: 0.6875rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1357,6 +1314,10 @@ h3 {
 .aside-card__title {
   font-size: 1.375rem;
   line-height: 1.25;
+}
+
+.aside-card__title + .aside-card__actions {
+  margin-top: 20px;
 }
 
 .aside-card__sub {

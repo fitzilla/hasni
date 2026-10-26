@@ -26,7 +26,7 @@ const {
   lead,
   description,
   asideTitle,
-  asideSub = 'Your first consultation is free, with no commitment.',
+  asideSub,
   emailSubject,
   inServices = true,
   tone = 'soft',
@@ -61,7 +61,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}
 
     <aside class="contact-card page-aside" aria-labelledby="aside-heading">
       <h2 id="aside-heading" class="aside-card__title">{asideTitle}</h2>
-      <p class="aside-card__sub">{asideSub}</p>
+      {asideSub && <p class="aside-card__sub">{asideSub}</p>}
       <div class="aside-card__actions">
         <CallButton block />
         <a class="btn btn--secondary btn--block" href={mailto}>

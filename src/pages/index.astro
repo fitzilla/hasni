@@ -69,7 +69,6 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Free ini
             <a class="field-value" href="#contact">City East Business Centre, Belfast</a>
           </div>
         </div>
-        <p class="note">Your first consultation is free, with no commitment.</p>
       </div>
     </aside>
   </section>
@@ -196,7 +195,6 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Free ini
       <div>
         <p class="eyebrow">Contact</p>
         <h2 id="contact-heading" class="h2">Let's talk about your accounts.</h2>
-        <p class="lead" style="margin-top: 16px">Your first consultation is free, with no commitment.</p>
         <div class="btn-row btn-row--stack-mobile" style="margin-top: 28px">
           <CallButton />
           <a class="btn btn--secondary" href={consultMail}>
@@ -216,29 +214,18 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Free ini
         </dl>
       </div>
 
-      <a class="map-card" href={site.mapsUrl} rel="noopener" aria-label="Open our office location in Google Maps">
-        <img
-          src={url('images/office-map.jpg')}
-          alt=""
-          width="1200"
-          height="900"
+      <div class="map-card">
+        <iframe
+          title="Map showing Heron Accountancy Solutions at City East Business Centre, Belfast"
+          src="https://www.google.com/maps?q=City+East+Business+Centre,+68-72+Newtownards+Road,+Belfast+BT4+1GW&output=embed"
           loading="lazy"
-          decoding="async"
-        />
-        <span class="map-pin" aria-hidden="true">
-          <span class="map-pin__label">Heron · City East Business Centre</span>
-          <svg width="34" height="44" viewBox="0 0 34 44">
-            <path
-              d="M17 43s14-14.6 14-25.5C31 8.4 24.7 2 17 2S3 8.4 3 17.5C3 28.4 17 43 17 43z"
-              fill="#C8102E"
-              stroke="#fff"
-              stroke-width="2.5"></path>
-            <circle cx="17" cy="17" r="5.5" fill="#fff"></circle>
-          </svg>
-        </span>
-        <span class="map-card__cta">Open in Google Maps <Icon name="arrow-up-right" size={16} /></span>
-        <span class="map-card__credit">© OpenStreetMap contributors</span>
-      </a>
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+        <a class="map-card__cta" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+          Open in Google Maps <Icon name="arrow-up-right" size={16} />
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </div>
     </div>
   </section>
 </Base>
