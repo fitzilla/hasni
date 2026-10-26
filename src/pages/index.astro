@@ -141,8 +141,8 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
     <h2 id="team-heading" class="h2">The people you'll deal with.</h2>
     <div class="team">
       <article class="person">
-        <!-- Replace with <img class="person__photo" src={url('images/julie.jpg')} alt="Julie Hamilton" /> -->
-        <div class="person__photo" role="img" aria-label="Photo of Julie Hamilton to follow">Photo to follow</div>
+        <!-- Photo to follow: add public/images/team/julie.webp (400×480) and swap this for an <img> like Nigel's -->
+        <div class="person__photo person__photo--initials" aria-hidden="true">JH</div>
         <div class="person__body">
           <h3 class="person__name">Julie Hamilton</h3>
           <p class="person__role">Chartered Certified Accountant (ACCA)</p>
@@ -157,8 +157,15 @@ const consultMail = `mailto:${site.email}?subject=${encodeURIComponent('Website 
       </article>
 
       <article class="person">
-        <!-- Replace with <img class="person__photo" src={url('images/nigel.jpg')} alt="Nigel Sempey" /> -->
-        <div class="person__photo" role="img" aria-label="Photo of Nigel Sempey to follow">Photo to follow</div>
+        <img
+          class="person__photo person__photo--img"
+          src={url('images/team/nigel.webp')}
+          alt="Nigel Sempey"
+          width="400"
+          height="480"
+          loading="lazy"
+          decoding="async"
+        />
         <div class="person__body">
           <h3 class="person__name">Nigel Sempey</h3>
           <p class="person__role">Chartered Certified Accountant</p>

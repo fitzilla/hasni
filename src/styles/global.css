@@ -854,6 +854,26 @@ h3 {
   }
 }
 
+.person__photo--img {
+  padding: 0;
+  width: 96px;
+  object-fit: cover;
+}
+
+.person__photo--initials {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: var(--display-weight);
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  .person__photo--img {
+    width: 120px;
+  }
+}
+
 .person__body {
   flex: 1 1 auto;
   min-width: 0;
