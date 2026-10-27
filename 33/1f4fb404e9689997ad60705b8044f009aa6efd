@@ -1,0 +1,47 @@
+.claude/skills/GSAP-SKILLS-LICENSE
+  s_78c172a0a30beb::t_82928f019c85dd 1-21
+.claude/skills/gsap-core/SKILL.md
+  s_78c172a0a30beb::t_d02d99b2fb81ea 1-254
+.claude/skills/gsap-frameworks/SKILL.md
+  s_78c172a0a30beb::t_0a96f9b2f71728 1-266
+.claude/skills/gsap-performance/SKILL.md
+  s_78c172a0a30beb::t_7300f6af9e826f 1-79
+.claude/skills/gsap-plugins/SKILL.md
+  s_78c172a0a30beb::t_1be5c29dfb88b4 1-433
+.claude/skills/gsap-react/SKILL.md
+  s_78c172a0a30beb::t_c14c53016acb09 1-136
+.claude/skills/gsap-scrolltrigger/SKILL.md
+  s_78c172a0a30beb::t_b27540e313ddca 1-296
+.claude/skills/gsap-timeline/SKILL.md
+  s_78c172a0a30beb::t_d48ff83c0472d0 1-107
+.claude/skills/gsap-utils/SKILL.md
+  s_78c172a0a30beb::t_2ccfcdcadd7402 1-284
+CLAUDE.md
+  s_78c172a0a30beb::t_6b83e1e870138b 1-14
+README.md
+  s_78c172a0a30beb::t_6f101caaf7b346 23,25,31-34
+package.json
+  s_78c172a0a30beb::t_990d8057c07b34 12-13
+src/layouts/Base.astro
+  s_78c172a0a30beb::t_44dea0b6e4f026 48-63,170-173
+src/scripts/animations.js
+  s_78c172a0a30beb::t_c60050c8d19691 1-125
+src/styles/global.css
+  s_78c172a0a30beb::t_c234b853a5c815 1620-1673
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "331f4fb404e9689997ad60705b8044f009aa6efd",
+  "prompts": {},
+  "sessions": {
+    "s_78c172a0a30beb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a922985a-4293-4009-abc0-d7757225a603",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Aaron Fitzsimmons <afitzsimmons@stora.co>"
+    }
+  }
+}
