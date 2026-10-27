@@ -20,11 +20,17 @@ src/
   layouts/ServicePage.astro  Shared template for service sub-pages
   components/             Icon, CallButton
   pages/                  index (one-page home) + one file per sub-page
+  scripts/animations.js   GSAP animations (ScrollTrigger reveals, SplitText titles)
   styles/global.css       All styles, mobile-first
+.claude/skills/           Official GSAP agent skills (for Claude Code / AI agents)
 public/images/            Logo and office map
 ```
 
 Phone number, email, address and hours live in `src/data/site.js` — change them there and every page updates.
+
+## Animation
+
+Animations use [GSAP](https://gsap.com) with ScrollTrigger and SplitText (all free, from the public `gsap` npm package). They switch off for visitors who have "reduce motion" turned on. The official GSAP AI skills live in `.claude/skills/` so Claude Code (or other agents) write GSAP the right way in this repo — see `CLAUDE.md`.
 
 ## Deploy
 

@@ -45,6 +45,22 @@ const nav = [
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="en_GB" />
 
+    <script is:inline>
+      // Hide animated elements before first paint (only when motion is allowed).
+      // Failsafe: if the animation script hasn't started within 3s, show everything.
+      (function () {
+        try {
+          if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            var root = document.documentElement;
+            root.classList.add('has-anim');
+            setTimeout(function () {
+              if (!window.__heronAnim) root.classList.remove('has-anim');
+            }, 3000);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="icon" type="image/png" href={url('favicon.png')} />
     <link rel="apple-touch-icon" href={url('apple-touch-icon.png')} />
 
@@ -150,6 +166,10 @@ const nav = [
         </nav>
       </div>
     </footer>
+
+    <script>
+      import '../scripts/animations.js';
+    </script>
 
     <script>
       const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');

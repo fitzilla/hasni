@@ -1617,3 +1617,57 @@ h3 {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 1px 2px rgba(21, 23, 28, 0.04), 0 16px 40px rgba(21, 23, 28, 0.1);
 }
+
+/* --------------------------------------------------------------------------
+   GSAP animation states (see src/scripts/animations.js)
+   `has-anim` is added by an inline script in Base.astro, only when the
+   visitor hasn't asked for reduced motion. GSAP reveals each element.
+   -------------------------------------------------------------------------- */
+
+.has-anim :is(
+  .hero .eyebrow,
+  .hero__title,
+  .hero__lead,
+  .hero .btn-row > *,
+  .hero .contact-card,
+  .page-hero .breadcrumb,
+  .page-hero .eyebrow,
+  .page-hero h1,
+  .page-hero .lead,
+  .page-hero .chips,
+  .facts > div,
+  #services > .eyebrow,
+  #services > .h2,
+  .svc-list > li,
+  .band,
+  #about .split > *,
+  #team > .eyebrow,
+  #team > .h2,
+  .person,
+  .quotes-head,
+  .quote,
+  #contact .contact > div > *,
+  .map-card,
+  .page-main > *,
+  .page-aside,
+  .related,
+  .link-groups > section,
+  .cta-strip
+) {
+  visibility: hidden;
+}
+
+/* Split headings: balanced wrapping fights SplitText's line detection */
+.has-anim :is(.hero__title, .page-hero h1) {
+  text-wrap: wrap;
+}
+
+/* Line masks: a little room so descenders (g, y, p) aren't clipped */
+.split-line-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.has-anim .backdrop__img {
+  will-change: transform;
+}
