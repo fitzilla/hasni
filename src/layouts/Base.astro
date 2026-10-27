@@ -15,7 +15,7 @@ const {
   description = 'Chartered certified accountants in Belfast. Tax, accounts, payroll and business advice for small and medium-sized businesses across Northern Ireland.',
 } = Astro.props;
 
-const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — Chartered certified accountants, Belfast`;
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | Chartered certified accountants, Belfast`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(url('images/heron-logo.png'), Astro.site);
 

@@ -1,4 +1,4 @@
-// Site animations — GSAP + ScrollTrigger + SplitText.
+// Site animations: GSAP + ScrollTrigger + SplitText.
 // Follows the official GSAP skills in .claude/skills (gsap-core, gsap-scrolltrigger,
 // gsap-plugins, gsap-performance): transforms + autoAlpha only, matchMedia for
 // reduced motion, ScrollTrigger.batch for reveals, SplitText with autoSplit/onSplit.
