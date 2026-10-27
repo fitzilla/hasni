@@ -1,0 +1,38 @@
+src/layouts/Base.astro
+  h_169f21fe93d5d3 18
+src/layouts/ServicePage.astro
+  h_169f21fe93d5d3 78
+src/pages/accounts-preparation.astro
+  h_169f21fe93d5d3 30
+src/pages/bookkeeping.astro
+  h_169f21fe93d5d3 11,21
+src/pages/business-start-up-advice.astro
+  h_169f21fe93d5d3 9,21,34
+src/pages/cloud-accounting.astro
+  h_169f21fe93d5d3 5,18
+src/pages/company-secretarial.astro
+  h_169f21fe93d5d3 39
+src/pages/index.astro
+  h_169f21fe93d5d3 120,135
+src/pages/tax-returns.astro
+  h_169f21fe93d5d3 9,18
+src/pages/useful-links.astro
+  h_169f21fe93d5d3 12,20-21,56
+src/pages/vat.astro
+  h_169f21fe93d5d3 9,32
+src/scripts/animations.js
+  h_169f21fe93d5d3 1
+src/styles/global.css
+  h_169f21fe93d5d3 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "bbe175c8d8c467f49b721fa1dfda7a9ebb5bc040",
+  "prompts": {},
+  "humans": {
+    "h_169f21fe93d5d3": {
+      "author": "Aaron Fitzsimmons <afitzsimmons@stora.co>"
+    }
+  }
+}
