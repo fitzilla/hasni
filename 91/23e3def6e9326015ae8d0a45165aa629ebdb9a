@@ -1,0 +1,35 @@
+src/pages/accounting-software-training.astro
+  s_d77c2b0cd683a3::t_ab574a51946e0c 21
+src/pages/accounts-preparation.astro
+  s_d77c2b0cd683a3::t_9ac9de2cc00735 18,29
+src/pages/business-start-up-advice.astro
+  s_d77c2b0cd683a3::t_7ba48cc8061a21 17,20,32
+src/pages/cloud-accounting.astro
+  s_d77c2b0cd683a3::t_396294bce7f3c8 17
+src/pages/company-secretarial.astro
+  s_d77c2b0cd683a3::t_e118e637192f66 39
+src/pages/index.astro
+  s_d77c2b0cd683a3::t_3d2d1b2d39645f 134
+src/pages/tax-returns.astro
+  s_d77c2b0cd683a3::t_4f60f6aa1eb7f4 18
+src/pages/useful-links.astro
+  s_d77c2b0cd683a3::t_75509e65bd0f45 55
+src/pages/vat.astro
+  s_d77c2b0cd683a3::t_fb790b47237285 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9123e3def6e9326015ae8d0a45165aa629ebdb9a",
+  "prompts": {},
+  "sessions": {
+    "s_d77c2b0cd683a3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d77c2b0cd683a3",
+        "model": "unknown"
+      },
+      "human_author": "Aaron Fitzsimmons <afitzsimmons@stora.co>"
+    }
+  }
+}
