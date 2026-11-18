@@ -10,15 +10,13 @@
   --red-dark: #8a0b20;
   --red-tint: #fbeff1;
   --red-tint-ink: #6e0a1a;
-  --teal: #1f5c5c;
-  --teal-tint: #e4efee;
-  --teal-line: #d3e3e1;
   --ink: #15171c;
   --body: #474b55;
   --muted: #6b6f78;
   --line: #e6e6e9;
   --soft: #fafafb;
   --chip: #f2f2f4;
+  --soft-hover: #f6f6f7;
   --placeholder: #eeeef1;
   --white: #ffffff;
   --on-dark-muted: #b9bcc4;
@@ -38,7 +36,7 @@
   --header-h: 72px;
   --section-y: 64px;
 
-  --shadow-card: 0 1px 2px rgba(21, 23, 28, 0.04), 0 12px 32px rgba(21, 23, 28, 0.06);
+  --shadow-card: 0 8px 24px rgba(21, 23, 28, 0.06);
 }
 
 @media (min-width: 640px) {
@@ -135,7 +133,7 @@ h3 {
 }
 
 :focus-visible {
-  outline: 3px solid var(--teal);
+  outline: 3px solid var(--red-ink);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -200,15 +198,9 @@ h3 {
 
 .eyebrow {
   margin: 0 0 12px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--red);
-}
-
-.eyebrow--teal {
-  color: var(--teal);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--body);
 }
 
 .h1 {
@@ -253,13 +245,13 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-height: 52px;
+  min-height: 48px;
   padding: 0 24px;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   text-align: center;
   white-space: nowrap;
@@ -286,21 +278,19 @@ h3 {
 }
 
 .btn--secondary {
-  background: var(--chip);
+  background: var(--white);
+  border-color: var(--ink);
   color: var(--ink);
 }
 
 .btn--secondary:hover {
-  background: #e7e7ea;
+  background: var(--chip);
   color: var(--ink);
 }
 
 .btn--outline {
-  min-height: 44px;
-  padding: 0 18px;
   border-color: var(--ink);
   color: var(--ink);
-  font-size: 0.9375rem;
 }
 
 .btn--outline:hover {
@@ -308,11 +298,22 @@ h3 {
   color: var(--white);
 }
 
-.btn--teal {
-  min-height: 44px;
-  padding: 0 20px;
-  background: var(--teal);
+.btn--quiet {
+  background: var(--white);
+  border-color: #eec2ca;
+  color: var(--red-ink);
+}
+
+.band:hover .btn--quiet {
+  background: var(--red-ink);
+  border-color: var(--red-ink);
   color: var(--white);
+}
+
+/* Compact size: header phone button, band and small secondary actions */
+.btn--sm {
+  min-height: 44px;
+  padding: 0 16px;
   font-size: 0.9375rem;
 }
 
@@ -340,9 +341,7 @@ h3 {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.78);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-  backdrop-filter: saturate(180%) blur(12px);
+  background: var(--white);
   border-bottom: 1px solid var(--line);
 }
 
@@ -407,7 +406,7 @@ h3 {
   height: 44px;
   padding: 0;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--white);
   color: var(--ink);
   cursor: pointer;
@@ -481,6 +480,10 @@ h3 {
   margin: 0;
   padding: 8px 0;
   list-style: none;
+}
+
+.mobile-menu li {
+  padding: 0;
 }
 
 .mobile-menu li + li {
@@ -570,9 +573,9 @@ h3 {
 }
 
 .contact-card__label {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--muted);
 }
 
@@ -589,7 +592,7 @@ h3 {
 
 .field-value {
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 
@@ -631,7 +634,7 @@ h3 {
 
 @media (min-width: 900px) {
   .facts {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px 40px;
   }
 }
@@ -669,29 +672,26 @@ h3 {
   }
 }
 
+.svc-list li {
+  border-top: 1px solid var(--line);
+}
+
 .svc-row {
   display: flex;
   align-items: center;
   gap: 16px;
   height: 100%;
-  padding: 18px 0;
-  border-top: 1px solid var(--line);
   color: var(--ink);
 }
 
 @media (min-width: 640px) {
   .svc-row {
     gap: 20px;
-    padding: 20px 0;
   }
 }
 
-.svc-row:hover {
-  color: var(--ink);
-}
-
 .svc-row:hover .svc-row__title {
-  color: var(--teal);
+  color: var(--red-ink);
 }
 
 .svc-row:hover .svc-row__arrow {
@@ -703,20 +703,16 @@ h3 {
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--teal-tint);
-  color: var(--teal);
+  justify-content: flex-start;
+  min-width: 28px;
+  color: var(--muted);
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
 @media (min-width: 640px) {
   .badge--lg {
-    width: 48px;
-    height: 48px;
     font-size: 0.9375rem;
   }
 }
@@ -744,8 +740,8 @@ h3 {
 
 .svc-row__arrow {
   flex: 0 0 auto;
-  color: var(--teal);
-  transition: transform 0.2s ease;
+  color: var(--muted);
+  transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), color 0.15s ease;
 }
 
 /* Cloud band */
@@ -756,8 +752,9 @@ h3 {
   justify-content: space-between;
   gap: 16px 32px;
   padding: 24px;
+  border: 1px solid #f3d3d9;
   border-radius: var(--radius-lg);
-  background: var(--teal-tint);
+  background: var(--red-tint);
   color: var(--ink);
 }
 
@@ -814,7 +811,7 @@ h3 {
 .team {
   display: grid;
   gap: 32px 48px;
-  margin-top: 36px;
+  margin-top: 40px;
 }
 
 @media (min-width: 900px) {
@@ -860,12 +857,29 @@ h3 {
   object-fit: cover;
 }
 
+/* Initials tile (until a photo arrives): logo red with the logo's halftone dots
+   fading in from the left */
 .person__photo--initials {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--red);
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: var(--display-weight);
   letter-spacing: 0.02em;
-  color: var(--muted);
+  color: var(--white);
+}
+
+.person__photo--initials::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.45) 1.4px, transparent 1.7px);
+  background-size: 7px 7px;
+  -webkit-mask-image: radial-gradient(circle at 0% 40%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(circle at 0% 40%, #000 0%, transparent 70%);
 }
 
 @media (min-width: 640px) {
@@ -885,7 +899,7 @@ h3 {
 }
 
 .person__role {
-  margin: 2px 0 10px;
+  margin: 4px 0 8px;
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--muted);
@@ -899,9 +913,9 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 20px;
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .person__links a {
@@ -918,21 +932,12 @@ h3 {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 36px;
-}
-
-.rule {
-  width: 40px;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--red);
+  margin-bottom: 40px;
 }
 
 .quotes-head p {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.9375rem;
+  font-weight: 500;
   color: var(--on-dark-muted);
 }
 
@@ -971,7 +976,7 @@ h3 {
 .quote figcaption {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin-top: auto;
 }
 
@@ -984,6 +989,34 @@ h3 {
   filter: grayscale(1);
 }
 
+/* Client logos in testimonials: each keeps its own background */
+.client-logo {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 48px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.client-logo--light {
+  padding: 4px;
+  background: var(--white);
+}
+
+.client-logo--dark {
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.client-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 .avatar--initials {
   display: inline-flex;
   align-items: center;
@@ -992,14 +1025,13 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: var(--white);
   font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 .quote figcaption strong {
   display: block;
   color: var(--white);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------
@@ -1013,8 +1045,8 @@ h3 {
 
 @media (min-width: 1000px) {
   .contact {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: start;
   }
 }
 
@@ -1022,12 +1054,204 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 24px 40px;
-  margin: 36px 0 0;
+  margin: 40px 0 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
 }
 
 .details dd {
   margin: 4px 0 0;
   font-weight: 500;
+}
+
+.contact__intro {
+  margin-top: 16px;
+  max-width: 28rem;
+}
+
+/* Phone and email as plain links: the form's Send is the one button here */
+.contact__direct {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.contact__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 1.125rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.contact__link--lg {
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.contact__link:hover {
+  color: var(--red-ink);
+}
+
+/* Contact form */
+.form-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 640px) {
+  .form-card {
+    padding: 32px;
+  }
+}
+
+.contact-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.field__hint {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1px solid #8b8f98;
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem; /* 16px stops iOS zooming in on focus */
+  transition: border-color 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.field textarea {
+  min-height: 160px;
+  padding: 12px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--muted);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--red-ink);
+  outline-offset: 1px;
+  border-color: var(--red-ink);
+  border-radius: 8px;
+}
+
+.field [aria-invalid='true'] {
+  border-color: var(--red-ink);
+}
+
+.field__error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--red-ink);
+}
+
+.field__error[hidden] {
+  display: none;
+}
+
+.contact-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.contact-form__actions .btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.contact-form__status {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--red-ink);
+}
+
+.contact-form__status--info {
+  color: var(--body);
+}
+
+.contact-form__status[hidden] {
+  display: none;
+}
+
+.form-sent {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  padding-block: 24px;
+  outline: none;
+}
+
+.form-sent[hidden] {
+  display: none;
+}
+
+.form-sent__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--red-tint);
+  color: var(--red-ink);
+}
+
+.form-sent__title {
+  font-size: 1.75rem;
+  line-height: 1.15;
+}
+
+.form-sent p {
+  max-width: 28rem;
+  color: var(--body);
+}
+
+
+/* The map runs full width under the contact details and form */
+#contact > .map-card {
+  margin-top: 48px;
 }
 
 .map-card {
@@ -1058,9 +1282,9 @@ h3 {
 .directions-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   margin-top: 8px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------
@@ -1070,11 +1294,6 @@ h3 {
 .page-hero {
   background: var(--soft);
   border-bottom: 1px solid var(--line);
-}
-
-.page-hero--teal {
-  background: var(--teal-tint);
-  border-bottom-color: var(--teal-line);
 }
 
 .page-hero__inner {
@@ -1211,7 +1430,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1242,7 +1461,7 @@ h3 {
   height: 8px;
   margin-top: 0.6em;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--muted);
 }
 
 /* Chips */
@@ -1256,12 +1475,12 @@ h3 {
 }
 
 .chip {
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: var(--teal-tint);
-  color: var(--teal);
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: var(--chip);
+  color: var(--body);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .chip--white {
@@ -1302,13 +1521,14 @@ h3 {
 
 .tile {
   padding: 20px;
+  border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--teal-tint);
+  background: var(--soft);
 }
 
 .tile strong {
   display: block;
-  color: var(--teal);
+  color: var(--ink);
 }
 
 .tile p {
@@ -1335,9 +1555,9 @@ h3 {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 0 18px;
+  padding: 0 16px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   color: var(--ink);
   font-size: 0.9375rem;
   font-weight: 500;
@@ -1345,8 +1565,8 @@ h3 {
 }
 
 .pills a:hover {
-  border-color: var(--teal);
-  color: var(--teal);
+  border-color: var(--red-ink);
+  color: var(--red-ink);
 }
 
 /* Aside contact */
@@ -1384,7 +1604,37 @@ h3 {
   display: inline-block;
   margin-top: 12px;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Row links: service rows, useful links and mobile menu items share one hover.
+   The hover fills the whole row edge to edge, so it sits flush against the
+   hairlines above and below instead of floating between them.
+   -------------------------------------------------------------------------- */
+
+.svc-row,
+.link-list a,
+.mobile-menu ul a {
+  padding: 20px 12px;
+  transition: background-color 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-menu ul a {
+  padding-block: 0;
+}
+
+.svc-row:hover,
+.link-list a:hover,
+.mobile-menu ul a:hover {
+  background: var(--soft-hover);
+  color: var(--ink);
+}
+
+.svc-row:hover .svc-row__arrow,
+.link-list a:hover svg,
+.mobile-menu ul a:hover svg {
+  color: var(--red-ink);
 }
 
 /* Links page */
@@ -1413,17 +1663,19 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.link-list li {
+  border-bottom: 1px solid var(--line);
+}
+
 .link-list a {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line);
   color: var(--ink);
 }
 
 .link-list a:hover .link-list__name {
-  color: var(--teal);
+  color: var(--red-ink);
 }
 
 .link-list__text {
@@ -1433,7 +1685,7 @@ h3 {
 
 .link-list__name {
   display: block;
-  font-weight: 700;
+  font-weight: 500;
   transition: color 0.15s ease;
 }
 
@@ -1446,7 +1698,7 @@ h3 {
 .link-list svg {
   flex: 0 0 auto;
   margin-top: 4px;
-  color: var(--teal);
+  color: var(--muted);
 }
 
 .cta-strip {
@@ -1539,12 +1791,6 @@ h3 {
   overflow: hidden;
 }
 
-/* Home: let the photo run up behind the translucent sticky header */
-.hero-band {
-  margin-top: calc(-1 * var(--header-h));
-  padding-top: var(--header-h);
-}
-
 .backdrop {
   position: absolute;
   inset: 0;
@@ -1587,19 +1833,13 @@ h3 {
   background: linear-gradient(180deg, rgba(250, 250, 251, 0.55) 0%, rgba(250, 250, 251, 0.88) 45%, var(--soft) 80%);
 }
 
-.backdrop--teal::after {
-  background: linear-gradient(180deg, rgba(228, 239, 238, 0.5) 0%, rgba(228, 239, 238, 0.86) 45%, var(--teal-tint) 80%);
-}
-
 @media (min-width: 1000px) {
   .backdrop--hero .backdrop__img {
     width: 78%;
     height: 100%;
   }
   .backdrop--hero::after {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, #fff 100%),
-      linear-gradient(90deg, #fff 22%, rgba(255, 255, 255, 0.88) 42%, rgba(255, 255, 255, 0.45) 70%, rgba(255, 255, 255, 0.25) 100%);
+    background: linear-gradient(90deg, #fff 22%, rgba(255, 255, 255, 0.85) 45%, rgba(255, 255, 255, 0.35) 100%);
   }
   .backdrop--page .backdrop__img {
     width: 60%;
@@ -1608,14 +1848,11 @@ h3 {
   .backdrop--page::after {
     background: linear-gradient(90deg, var(--soft) 40%, rgba(250, 250, 251, 0.7) 62%, rgba(250, 250, 251, 0.15) 100%);
   }
-  .backdrop--teal::after {
-    background: linear-gradient(90deg, var(--teal-tint) 40%, rgba(228, 239, 238, 0.72) 62%, rgba(228, 239, 238, 0.15) 100%);
-  }
 }
 
 .hero-band .contact-card {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 1px 2px rgba(21, 23, 28, 0.04), 0 16px 40px rgba(21, 23, 28, 0.1);
+  box-shadow: var(--shadow-card);
 }
 
 /* --------------------------------------------------------------------------
@@ -1646,7 +1883,7 @@ h3 {
   .person,
   .quotes-head,
   .quote,
-  #contact .contact > div > *,
+  #contact .contact > div > :not([data-form-sent]),
   .map-card,
   .page-main > *,
   .page-aside,
@@ -1666,8 +1903,4 @@ h3 {
 .split-line-mask {
   padding-bottom: 0.14em;
   margin-bottom: -0.14em;
-}
-
-.has-anim .backdrop__img {
-  will-change: transform;
 }

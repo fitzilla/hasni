@@ -4,7 +4,11 @@ export const site = {
   phoneHref: 'tel:+442890941680',
   email: 'accounts@hasni.co.uk',
   address: ['301 City East Business Centre', '68–72 Newtownards Road', 'Belfast BT4 1GW'],
-  hours: { days: 'Monday–Friday', short: 'Mon–Fri, 9am–5pm', time: '9.00am–5.00pm' },
+  hours: { short: 'Mon–Fri, 9am–5pm' },
+  // Contact form: paste the form service's endpoint here (e.g. https://formspree.io/f/xxxxxxx)
+  // to deliver messages. While it's empty, Send opens the visitor's email app with the
+  // message filled in, addressed to the email above.
+  formEndpoint: '',
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=City+East+Business+Centre+68-72+Newtownards+Road+Belfast+BT4+1GW',
   social: {

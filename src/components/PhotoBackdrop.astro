@@ -5,10 +5,9 @@ import { url } from '../lib/url.js';
 
 interface Props {
   variant?: 'hero' | 'page';
-  tone?: 'mono' | 'teal';
 }
 
-const { variant = 'page', tone = 'mono' } = Astro.props;
+const { variant = 'page' } = Astro.props;
 
 const photos = [
   { key: 'titanic', pos: '40% 60%' },
@@ -16,15 +15,15 @@ const photos = [
   { key: 'marina', pos: '50% 55%' },
 ].map((p) => ({
   pos: p.pos,
-  src: url(`images/backdrops/${p.key}-${tone}-1800.webp`),
-  srcset: `${url(`images/backdrops/${p.key}-${tone}-900.webp`)} 900w, ${url(`images/backdrops/${p.key}-${tone}-1800.webp`)} 1800w`,
+  src: url(`images/backdrops/${p.key}-mono-1800.webp`),
+  srcset: `${url(`images/backdrops/${p.key}-mono-900.webp`)} 900w, ${url(`images/backdrops/${p.key}-mono-1800.webp`)} 1800w`,
 }));
 
 const sizes = variant === 'hero' ? '(min-width: 1000px) 78vw, 100vw' : '(min-width: 1000px) 60vw, 100vw';
 const fallback = photos[0];
 ---
 
-<div class:list={['backdrop', `backdrop--${variant}`, `backdrop--${tone}`]} aria-hidden="true">
+<div class:list={['backdrop', `backdrop--${variant}`]} aria-hidden="true">
   <img class="backdrop__img" alt="" sizes={sizes} decoding="async" data-backdrop />
   <noscript>
     <img

@@ -16,7 +16,6 @@ interface Props {
   asideSub?: string;
   emailSubject: string;
   inServices?: boolean;
-  tone?: 'soft' | 'teal';
   relatedLabel?: string;
 }
 
@@ -30,17 +29,16 @@ const {
   asideSub,
   emailSubject,
   inServices = true,
-  tone = 'soft',
   relatedLabel = 'Other services',
 } = Astro.props;
 
 const related = relatedPages.filter((p) => p.slug !== slug);
-const mailto = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}`;
+const messageHref = `${url('contact/')}?subject=${encodeURIComponent(emailSubject)}`;
 ---
 
 <Base title={title} description={description}>
-  <section class:list={['page-hero', { 'page-hero--teal': tone === 'teal' }]}>
-    <PhotoBackdrop variant="page" tone={tone === 'teal' ? 'teal' : 'mono'} />
+  <section class="page-hero">
+    <PhotoBackdrop variant="page" />
     <div class="container page-hero__inner">
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
@@ -49,7 +47,7 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}
           <li><span aria-current="page">{title}</span></li>
         </ol>
       </nav>
-      <p class:list={['eyebrow', { 'eyebrow--teal': tone === 'teal' }]}>{eyebrow}</p>
+      <p class="eyebrow">{eyebrow}</p>
       <h1 class="h1">{title}</h1>
       <p class="lead">{lead}</p>
       <slot name="hero" />
@@ -66,9 +64,9 @@ const mailto = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}
       {asideSub && <p class="aside-card__sub">{asideSub}</p>}
       <div class="aside-card__actions">
         <CallButton block />
-        <a class="btn btn--secondary btn--block" href={mailto}>
+        <a class="btn btn--secondary btn--block" href={messageHref}>
           <Icon name="mail" size={18} />
-          <span>Email us</span>
+          <span>Send a message</span>
         </a>
       </div>
       <div class="aside-card__meta">
