@@ -1,0 +1,138 @@
+---
+// Contact section: phone, email, address and hours beside the contact form, with the map below.
+// Used on the home page (#contact) and on /contact/. Behaviour lives in scripts/contact-form.js.
+import Icon from './Icon.astro';
+import { site } from '../data/site.js';
+
+interface Props {
+  /** 'h1' on the contact page, 'h2' inside the home page */
+  headingLevel?: 'h1' | 'h2';
+}
+
+const { headingLevel = 'h2' } = Astro.props;
+const Heading = headingLevel;
+const SentHeading = headingLevel === 'h1' ? 'h2' : 'h3';
+---
+
+<section id="contact" class="section container" aria-labelledby="contact-heading">
+  <div class="contact">
+    <div class="contact__info">
+      <p class="eyebrow">Contact</p>
+      <Heading id="contact-heading" class:list={[headingLevel === 'h1' ? 'h1' : 'h2']}>Let's talk about your accounts</Heading>
+      <p class="lead contact__intro">Call, email, or fill in the contact form and we'll get back to you.</p>
+
+      <div class="contact__direct">
+        <div>
+          <span class="field-label">Phone</span>
+          <a class="contact__link contact__link--lg" href={site.phoneHref}>
+            <Icon name="phone" size={20} />
+            <span>{site.phone}</span>
+          </a>
+        </div>
+        <div>
+          <span class="field-label">Email</span>
+          <a class="contact__link" href={`mailto:${site.email}`}>
+            <Icon name="mail" size={18} />
+            <span>{site.email}</span>
+          </a>
+        </div>
+      </div>
+
+      <dl class="details">
+        <div>
+          <dt class="field-label">Address</dt>
+          <dd>
+            {site.address.map((line, i) => <>{line}{i < site.address.length - 1 && <br />}</>)}
+            <br />
+            <a class="directions-link" href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
+              Get directions <Icon name="arrow-up-right" size={14} />
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          </dd>
+        </div>
+        <div>
+          <dt class="field-label">Office hours</dt>
+          <dd>{site.hours.short}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="form-card">
+      <form
+        class="contact-form"
+        data-contact-form
+        data-endpoint={site.formEndpoint}
+        data-email={site.email}
+        action={site.formEndpoint || `mailto:${site.email}`}
+        method="post"
+        novalidate
+        aria-labelledby="contact-heading"
+      >
+        <div class="form-row">
+          <div class="field">
+            <label for="cf-name">Your name <span class="field__hint">(required)</span></label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-error" />
+            <p id="cf-name-error" class="field__error" hidden>
+              <Icon name="alert" size={16} />
+              <span></span>
+            </p>
+          </div>
+          <div class="field">
+            <label for="cf-email">Your email <span class="field__hint">(required)</span></label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="cf-email-error" />
+            <p id="cf-email-error" class="field__error" hidden>
+              <Icon name="alert" size={16} />
+              <span></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cf-subject">Subject</label>
+          <input id="cf-subject" name="subject" type="text" />
+        </div>
+
+        <div class="field">
+          <label for="cf-message">Your message</label>
+          <textarea id="cf-message" name="message" rows="6"></textarea>
+        </div>
+
+        <!-- Spam trap: people never see or fill this; bots do -->
+        <div class="sr-only" aria-hidden="true">
+          <label for="cf-hp">Leave this field empty</label>
+          <input id="cf-hp" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="contact-form__actions">
+          <button class="btn btn--primary" type="submit">
+            <span>Send</span>
+            <Icon name="arrow-right" size={16} />
+          </button>
+          <p class="contact-form__status" role="alert" hidden></p>
+        </div>
+      </form>
+
+      <div class="form-sent" data-form-sent role="status" tabindex="-1" hidden>
+        <span class="form-sent__icon"><Icon name="check" size={22} /></span>
+        <SentHeading class="form-sent__title" data-form-sent-title>Thanks</SentHeading>
+        <p data-form-sent-body>
+          We've got your message and we'll get back to you. For anything urgent, call {site.phone}.
+        </p>
+        <button class="btn btn--secondary btn--sm" type="button" data-form-reset>Send another message</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-card">
+    <iframe
+      title="Map showing Heron Accountancy Solutions at City East Business Centre, Belfast"
+      src="https://www.google.com/maps?q=68-72+Newtownards+Road,+Belfast+BT4+1GW&z=16&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen></iframe>
+  </div>
+</section>
+
+<script>
+  import '../scripts/contact-form.js';
+</script>

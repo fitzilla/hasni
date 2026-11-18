@@ -26,7 +26,7 @@ const REVEAL = [
   '.person',
   '.quotes-head',
   '.quote',
-  '#contact .contact > div > *',
+  '#contact .contact > div > :not([data-form-sent])',
   '.map-card',
   '.page-main > *',
   '.page-aside',
@@ -85,18 +85,6 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
     { autoAlpha: 1, y: 0, duration: 1 },
     0.55,
   );
-
-  // Photo backdrop: settle in gently, then drift slightly on scroll
-  gsap.fromTo('.backdrop__img', { scale: 1.06 }, { scale: 1, duration: 2.4, ease: 'power2.out' });
-
-  const band = document.querySelector('.hero-band, .page-hero');
-  if (band) {
-    gsap.to('.backdrop__img', {
-      yPercent: 8,
-      ease: 'none',
-      scrollTrigger: { trigger: band, start: 'top top', end: 'bottom top', scrub: true },
-    });
-  }
 
   // --- Scroll reveals -----------------------------------------------------
   gsap.set(REVEAL, { autoAlpha: 0, y: 24 });

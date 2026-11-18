@@ -19,11 +19,15 @@ const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | Chartered 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(url('images/heron-logo.png'), Astro.site);
 
+// On the contact page itself, Contact links scroll to its form instead of leaving for the home page
+const onContactPage = /\/contact\/?$/.test(Astro.url.pathname);
+const contactHref = onContactPage ? '#contact' : url('#contact');
+
 const nav = [
   { label: 'Services', href: url('#services') },
   { label: 'About', href: url('#about') },
   { label: 'Team', href: url('#team') },
-  { label: 'Contact', href: url('#contact') },
+  { label: 'Contact', href: contactHref },
 ];
 ---
 
@@ -159,7 +163,7 @@ const nav = [
             <li><a href={url('#services')}>Services</a></li>
             <li><a href={url('cloud-accounting/')}>Cloud accounting</a></li>
             <li><a href={url('useful-links/')}>Useful links</a></li>
-            <li><a href={url('#contact')}>Contact</a></li>
+            <li><a href={contactHref}>Contact</a></li>
             <li><a href={site.social.facebook} rel="noopener">Facebook</a></li>
             <li><a href={site.social.x} rel="noopener">X</a></li>
           </ul>
