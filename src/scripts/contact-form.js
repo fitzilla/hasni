@@ -4,9 +4,10 @@
 // #contact fills the Subject field and puts the cursor in Name. A ?subject= query
 // on the page does the same (service pages link to contact/?subject=Payroll).
 //
-// Sending: if site.formEndpoint is set (a Formspree-style endpoint that accepts
-// JSON), the message is posted there. Until then, Send opens the visitor's email
-// app with the message filled in, so the form still works.
+// Sending: the message is posted as JSON to site.formEndpoint, the forms Worker
+// (github.com/fitzilla/forms-worker), which emails it to accounts@hasni.co.uk via
+// Resend. If formEndpoint is ever empty, Send opens the visitor's email app with
+// the message filled in instead, so the form still works.
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

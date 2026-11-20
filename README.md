@@ -18,7 +18,8 @@ src/
   data/site.js            Contact details, services list, social links
   layouts/Base.astro      <head>, header (with mobile menu), footer
   layouts/ServicePage.astro  Shared template for service sub-pages
-  components/             Icon, CallButton
+  components/             Icon, CallButton, ContactSection
+  scripts/contact-form.js Contact form validation and sending
   pages/                  index (one-page home) + one file per sub-page
   scripts/animations.js   GSAP animations (ScrollTrigger reveals, SplitText titles)
   styles/global.css       All styles, mobile-first
@@ -27,6 +28,14 @@ public/images/            Logo and office map
 ```
 
 Phone number, email, address and hours live in `src/data/site.js` — change them there and every page updates.
+
+## Contact form
+
+The form on the home page and `/contact/` posts to the forms Worker on Cloudflare ([fitzilla/forms-worker](https://github.com/fitzilla/forms-worker)), which emails each message to accounts@hasni.co.uk from `forms@hasni.co.uk` through Resend, with Reply-To set to the visitor.
+
+- The address the form posts to is `formEndpoint` in `src/data/site.js`. Where messages go, and which websites may use the form, live in the Worker's `src/sites.js`.
+- To test against a local Worker, copy `.env.example` to `.env.development.local` and run the Worker alongside the site.
+- hasni.co.uk's DNS has Resend records (`resend._domainkey`, `send`, `rsend`, `_dmarc`) next to the Microsoft 365 email records. Keep both sets if the DNS ever moves.
 
 ## Animation
 

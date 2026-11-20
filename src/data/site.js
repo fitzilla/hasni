@@ -5,10 +5,12 @@ export const site = {
   email: 'accounts@hasni.co.uk',
   address: ['301 City East Business Centre', '68–72 Newtownards Road', 'Belfast BT4 1GW'],
   hours: { short: 'Mon–Fri, 9am–5pm' },
-  // Contact form: paste the form service's endpoint here (e.g. https://formspree.io/f/xxxxxxx)
-  // to deliver messages. While it's empty, Send opens the visitor's email app with the
-  // message filled in, addressed to the email above.
-  formEndpoint: '',
+  // Contact form: where messages are posted (the forms Worker, github.com/fitzilla/forms-worker).
+  // It emails them to accounts@hasni.co.uk (set in the Worker's src/sites.js, not here).
+  // PUBLIC_FORM_ENDPOINT overrides this address, e.g. in
+  // .env.development.local to test against a local Worker. If it's ever set to '', Send
+  // opens the visitor's email app instead.
+  formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT ?? 'https://forms.aaron-cursors.workers.dev/f/hasni',
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=City+East+Business+Centre+68-72+Newtownards+Road+Belfast+BT4+1GW',
   social: {

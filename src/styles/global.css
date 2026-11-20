@@ -63,6 +63,11 @@
   box-sizing: border-box;
 }
 
+/* The hidden attribute always wins, even over a component's own display value */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -1185,10 +1190,6 @@ h3 {
   color: var(--red-ink);
 }
 
-.field__error[hidden] {
-  display: none;
-}
-
 .contact-form__actions {
   display: flex;
   flex-wrap: wrap;
@@ -1211,20 +1212,12 @@ h3 {
   color: var(--body);
 }
 
-.contact-form__status[hidden] {
-  display: none;
-}
-
 .form-sent {
   display: grid;
   justify-items: start;
   gap: 16px;
   padding-block: 24px;
   outline: none;
-}
-
-.form-sent[hidden] {
-  display: none;
 }
 
 .form-sent__icon {
