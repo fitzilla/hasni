@@ -2,22 +2,83 @@
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import CallButton from '../components/CallButton.astro';
-import { site } from '../data/site.js';
+import { site, services, team } from '../data/site.js';
 import { url } from '../lib/url.js';
 
 interface Props {
   title?: string;
   description?: string;
+  /** Keep this page out of search results (e.g. the 404 page) */
+  noindex?: boolean;
+  /** Extra schema.org data for this page, e.g. a Service on service pages */
+  schema?: Record<string, unknown>;
 }
 
 const {
   title,
   description = 'Chartered certified accountants in Belfast. Tax, accounts, payroll and business advice for small and medium-sized businesses across Northern Ireland.',
+  noindex = false,
+  schema,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | Chartered certified accountants, Belfast`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(url('images/heron-logo.png'), Astro.site);
+const home = new URL(url(''), Astro.site).toString();
+
+// The business, for search engines and AI tools (schema.org). Built from site.js so it
+// matches what the pages say. llms.txt is generated from this at build time too.
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  '@id': `${home}#business`,
+  name: site.name,
+  description: 'Chartered certified accountants in Belfast. Tax, accounts, payroll and business advice for small and medium-sized businesses across Northern Ireland.',
+  url: home,
+  logo: ogImage.toString(),
+  image: ogImage.toString(),
+  telephone: `+44 ${site.phone.replace(/^0/, '')}`,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${site.address[0]}, ${site.address[1]}`,
+    addressLocality: 'Belfast',
+    postalCode: 'BT4 1GW',
+    addressRegion: 'Northern Ireland',
+    addressCountry: 'GB',
+  },
+  hasMap: site.mapsUrl,
+  areaServed: { '@type': 'AdministrativeArea', name: 'Northern Ireland' },
+  // Mirrors site.hours.short (Mon–Fri, 9am–5pm)
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '17:00',
+  },
+  employee: team.map((p) => ({
+    '@type': 'Person',
+    name: p.name,
+    jobTitle: p.role,
+    email: p.email,
+    ...(p.linkedin ? { sameAs: [p.linkedin] } : {}),
+  })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: services.map((sv) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: sv.title,
+        description: sv.summary,
+        url: new URL(url(`${sv.slug}/`), Astro.site).toString(),
+      },
+    })),
+  },
+  sameAs: [site.social.facebook, site.social.x],
+};
+const structuredData = schema ? [business, { '@context': 'https://schema.org', ...schema }] : business;
 
 // On the contact page itself, Contact links scroll to its form instead of leaving for the home page
 const onContactPage = /\/contact\/?$/.test(Astro.url.pathname);
@@ -39,6 +100,7 @@ const nav = [
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#ffffff" />
 
     <meta property="og:type" content="website" />
@@ -48,6 +110,7 @@ const nav = [
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
 
     <script is:inline>
       // Hide animated elements before first paint (only when motion is allowed).
@@ -75,23 +138,7 @@ const nav = [
       href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
     />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'AccountingService',
-      name: site.name,
-      url: new URL(url(''), Astro.site).toString(),
-      telephone: '+44 28 9094 1680',
-      email: site.email,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '301 City East Business Centre, 68–72 Newtownards Road',
-        addressLocality: 'Belfast',
-        postalCode: 'BT4 1GW',
-        addressCountry: 'GB',
-      },
-      openingHours: 'Mo-Fr 09:00-17:00',
-      sameAs: [site.social.facebook, site.social.x],
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

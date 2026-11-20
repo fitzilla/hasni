@@ -926,7 +926,14 @@ h3 {
 .person__links a {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   min-height: 32px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.person__links svg {
+  flex: none;
 }
 
 /* --------------------------------------------------------------------------

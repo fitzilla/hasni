@@ -1,11 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import seoFiles from './integrations/seo-files.mjs';
 
 // Served at https://www.hasni.co.uk from GitHub Pages. The custom domain is set in
 // the repo's Settings → Pages (deploys run through GitHub Actions, so no CNAME file).
 export default defineConfig({
   site: 'https://www.hasni.co.uk',
   trailingSlash: 'ignore',
+
+  // sitemap.xml, robots.txt and llms.txt, generated from the built pages
+  integrations: [seoFiles()],
 
   // Addresses from the old WordPress site, so Google results and bookmarks still land
   // somewhere useful. Pages that kept their address (tax-returns, cloud-accounting,

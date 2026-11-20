@@ -140,7 +140,7 @@ const quotes = [
     <h2 id="team-heading" class="h2">The people you'll deal with</h2>
     <div class="team">
       <article class="person">
-        <!-- Photo to follow: add public/images/team/julie.webp (400×480) and swap this for an <img> like Nigel's -->
+        {/* Photo to follow: add public/images/team/julie.webp (400×480) and swap this for an <img> like Nigel's */}
         <div class="person__photo person__photo--initials" aria-hidden="true">JH</div>
         <div class="person__body">
           <h3 class="person__name">Julie Hamilton</h3>
@@ -150,7 +150,14 @@ const quotes = [
             entrepreneurs.
           </p>
           <div class="person__links">
-            <a href={`mailto:julie@hasni.co.uk?subject=${encodeURIComponent('Website enquiry')}`}>Email Julie</a>
+            <a href={site.phoneHref} aria-label={`Call Julie on ${site.phone}`}>
+              <Icon name="phone" size={16} />
+              <span>{site.phone}</span>
+            </a>
+            <a href={`mailto:julie@hasni.co.uk?subject=${encodeURIComponent('Website enquiry')}`}>
+              <Icon name="mail" size={16} />
+              <span>Email Julie</span>
+            </a>
           </div>
         </div>
       </article>
@@ -173,8 +180,18 @@ const quotes = [
             University.
           </p>
           <div class="person__links">
-            <a href={`mailto:nigel@hasni.co.uk?subject=${encodeURIComponent('Website enquiry')}`}>Email Nigel</a>
-            <a href="https://uk.linkedin.com/in/nigel-sempey-8835861b" rel="noopener">LinkedIn</a>
+            <a href={site.phoneHref} aria-label={`Call Nigel on ${site.phone}`}>
+              <Icon name="phone" size={16} />
+              <span>{site.phone}</span>
+            </a>
+            <a href={`mailto:nigel@hasni.co.uk?subject=${encodeURIComponent('Website enquiry')}`}>
+              <Icon name="mail" size={16} />
+              <span>Email Nigel</span>
+            </a>
+            <a href="https://uk.linkedin.com/in/nigel-sempey-8835861b" rel="noopener">
+              <Icon name="linkedin" size={16} />
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
       </article>

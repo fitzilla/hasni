@@ -34,9 +34,21 @@ const {
 
 const related = relatedPages.filter((p) => p.slug !== slug);
 const messageHref = `${url('contact/')}?subject=${encodeURIComponent(emailSubject)}`;
+
+// This page's service, linked to the business described in Base.astro
+const home = new URL(url(''), Astro.site).toString();
+const serviceSchema = {
+  '@type': 'Service',
+  name: title,
+  description,
+  url: new URL(url(`${slug}/`), Astro.site).toString(),
+  serviceType: title,
+  areaServed: { '@type': 'AdministrativeArea', name: 'Northern Ireland' },
+  provider: { '@id': `${home}#business` },
+};
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} schema={serviceSchema}>
   <section class="page-hero">
     <PhotoBackdrop variant="page" />
     <div class="container page-hero__inner">
