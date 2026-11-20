@@ -1,6 +1,6 @@
 # Heron Accountancy Solutions — notes for Claude
 
-Static Astro site deployed to GitHub Pages (`base: /hasni`). See README.md for structure and deploy.
+Static Astro site deployed to GitHub Pages at https://www.hasni.co.uk (custom domain, base `/`). See README.md for structure and deploy.
 
 ## Animation
 

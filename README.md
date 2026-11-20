@@ -6,7 +6,7 @@ Website for Heron Accountancy Solutions, chartered certified accountants in Belf
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321/hasni/
+npm run dev      # http://localhost:4321/
 npm run build    # outputs to dist/
 npm run preview
 ```
@@ -47,13 +47,20 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
 
 One-time setup: **Settings → Pages → Source → GitHub Actions**.
 
-The site is served at `https://fitzilla.github.io/hasni/`.
+The site is served at `https://www.hasni.co.uk`. The custom domain is set under **Settings → Pages → Custom domain** (with Actions deploys, GitHub ignores a `CNAME` file). `hasni.co.uk` without www redirects to www.
 
-### Moving to hasni.co.uk
+### Domain and DNS
 
-1. In `astro.config.mjs`, set `site: 'https://www.hasni.co.uk'` and remove `base`.
-2. Add `public/CNAME` containing `www.hasni.co.uk`.
-3. Point the domain's DNS at GitHub Pages and add the domain under **Settings → Pages**.
+The domain is registered at GoDaddy, and its DNS is managed there. Only two records point at this site:
+
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (GitHub Pages) |
+| CNAME | `www` | `fitzilla.github.io` |
+
+Every other record is email: Microsoft 365 (MX, SPF, autodiscover, lync, msoid, enterprise*) for Nigel and Julie's inboxes, and Resend for the contact form. Never change those when touching the website.
+
+Addresses from the old WordPress site redirect to their new pages (see `redirects` in `astro.config.mjs`).
 
 ## To do
 
