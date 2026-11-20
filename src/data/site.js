@@ -19,6 +19,18 @@ export const site = {
   },
 };
 
+// The team, for search engines and llms.txt (schema.org data in Base.astro).
+// Keep in step with the "Meet the team" section in src/pages/index.astro.
+export const team = [
+  { name: 'Julie Hamilton', role: 'Chartered Certified Accountant (ACCA)', email: 'julie@hasni.co.uk' },
+  {
+    name: 'Nigel Sempey',
+    role: 'Chartered Certified Accountant',
+    email: 'nigel@hasni.co.uk',
+    linkedin: 'https://uk.linkedin.com/in/nigel-sempey-8835861b',
+  },
+];
+
 export const services = [
   {
     num: '01',

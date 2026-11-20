@@ -37,6 +37,12 @@ The form on the home page and `/contact/` posts to the forms Worker on Cloudflar
 - To test against a local Worker, copy `.env.example` to `.env.development.local` and run the Worker alongside the site.
 - hasni.co.uk's DNS has Resend records (`resend._domainkey`, `send`, `rsend`, `_dmarc`) next to the Microsoft 365 email records. Keep both sets if the DNS ever moves.
 
+## Search engines and AI tools
+
+- Every page's title and meta description come from the page itself (`title` and `description` props). Write them for people, as they show in Google results.
+- `src/layouts/Base.astro` adds schema.org data describing the business (address, phone, hours, team, services) to every page, built from `src/data/site.js`. Service pages add a `Service` entry.
+- After each build, `integrations/seo-files.mjs` writes `sitemap.xml`, `robots.txt` and [`llms.txt`](https://llmstxt.org) from the built pages, so they never need hand-editing. Pages with `noindex` (the 404, old-URL redirects) are left out.
+
 ## Animation
 
 Animations use [GSAP](https://gsap.com) with ScrollTrigger and SplitText (all free, from the public `gsap` npm package). They switch off for visitors who have "reduce motion" turned on. The official GSAP AI skills live in `.claude/skills/` so Claude Code (or other agents) write GSAP the right way in this repo — see `CLAUDE.md`.
