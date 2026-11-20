@@ -1,0 +1,26 @@
+astro.config.mjs
+  s_51da16d2174965::t_511cdacc6886f3 4-5,7,9-32
+CLAUDE.md
+  s_51da16d2174965::t_0e9918b533ecac 3
+README.md
+  s_51da16d2174965::t_0e9918b533ecac 9
+  s_51da16d2174965::t_1ff851e2c2c4fb 50,52,54-63
+src/lib/url.js
+  s_51da16d2174965::t_0e9918b533ecac 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "08f6a91f84c563b9c411a93c2e397d8c95a7892f",
+  "prompts": {},
+  "sessions": {
+    "s_51da16d2174965": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "72f1f4f1-9ea3-4702-bfbf-1b44b1ab6ec7",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Aaron Fitzsimmons <afitzsimmons@stora.co>"
+    }
+  }
+}
